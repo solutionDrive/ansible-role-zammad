@@ -1,0 +1,11 @@
+---
+
+- name: Install nginx configuration
+  copy:
+    src: /opt/zammad/contrib/nginx/zammad.conf
+    dest: /etc/nginx/sites-available/zammad.conf
+    remote_src: yes
+  notify:
+    - restart nginx
+
+# TODO Replace hostname (if needed, check it!)

@@ -1,38 +1,88 @@
-Role Name
-=========
+ansible-role-zammad
+===================
 
-A brief description of the role goes here.
+This role installs and/or configures Zammad, known from https://zamma.org .
+
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+To run zammad, you have to meet the requirements from
+https://docs.zammad.org/en/latest/prerequisites-software.html .
+
+Please note that is highly recommended *not* to run the database server
+on the same machine as zammad itself.
+
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+    # Install prerequisites via apt (disable and do it manually to use another package manager)
+    zammad_install_prerequisites: true
+
+    # If set to true, the setup process is triggered.
+    zammad_install: true
+
+    # If set to true, the configuration process is done.
+    zammad_configure: false
+
+    # Install nginx as a reverse proxy in front of zammad
+    zammad_install_nginx: true
+
+    # If set to true, nginx is configured as reverse proxy.
+    zammad_configure_nginx: false
+
+    # Set to true to create database and run migrations
+    zammad_initialize_db: false
+
+If you set ```zammad_install``` to false and ```zammad_configure``` to true
+it is possible to configure an existing zammad installation
+(for example inside a launch configuration).
+
+
+    # Set to true to install with MySQL as database driver
+    zammad_db_mysql: true
+
+    # Set to true to install with PostgreSQL as database driver
+    zammad_db_postgresql: false
+
+**Do not set both ```zammad_db_mysql``` and ```zammad_db_postgresql``` to true!**
+
+
+    # Enable or disable installation of systemd services
+    zammad_install_systemd_service: true
+
+    # Database parameters should be self explaining    
+    zammad_db_host: 127.0.0.1
+    zammad_db_port: 3306
+    zammad_db_username: zammad
+    zammad_db_password: ~
+    zammad_db_name: zammad
+
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None so far.
+
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: solutiondrive.ansible-role-zammad }
+
 
 License
 -------
 
-BSD
+MIT
+
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Created by solutionDrive GmbH.
+https://solutionDrive.de/

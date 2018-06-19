@@ -1,7 +1,19 @@
 ---
 
-- include: setup.yml
+- include: prerequisites.yml
+  when: zammad_install_prerequisites
+
+- include: setup_nginx.yml
+  when: zammad_install_nginx
+
+- include: zammad_setup.yml
   when: zammad_install
 
-- include: configure.yml
+- include: zammad_configure.yml
   when: zammad_configure
+
+- include: zammad_database.yml
+  when: zammad_initialize_db
+
+- include: nginx_configure.yml
+  when: zammad_configure_nginx

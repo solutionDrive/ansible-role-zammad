@@ -1,2 +1,18 @@
 ---
-# defaults file for .
+zammad_install_prerequisites: true
+zammad_install: true
+zammad_install_nginx: true
+zammad_configure: false
+
+zammad_db_mysql: true
+zammad_db_postgresql: false
+
+zammad_db_host: 127.0.0.1
+zammad_db_port: 3306
+zammad_db_username: zammad
+zammad_db_password: ~
+zammad_db_name: zammad
+
+zammad_install_systemd_service: true
+
+zammad_initialize_db: false

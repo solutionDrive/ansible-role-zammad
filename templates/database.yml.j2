@@ -1,0 +1,18 @@
+default: &default
+  pool: 50
+  timeout: 5000
+  encoding: utf8
+
+  adapter: mysql2
+  host: {{ zammad_db_host }}
+  port: {{ zammad_db_port }}
+  username: {{ zammad_db_username }}
+  password: {{ zammad_db_password }}
+
+production:
+  <<: *default
+  database: {{ zammad_db_name }}
+
+# development:
+#  <<: *default
+#  database: zammad_development

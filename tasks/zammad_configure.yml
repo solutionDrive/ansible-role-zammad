@@ -1,0 +1,13 @@
+---
+
+- name: Copy database configuration
+  template:
+    src: templates/database.yml.j2
+    dest: /opt/zammad/config/database.yml
+    owner: zammad
+    group: zammad
+    mode: 0640
+  notify:
+     - restart zammad
+
+# @TODO Further configuration?

@@ -1,2 +1,10 @@
 ---
-# handlers file for .
+- name: restart zammad
+  service:
+    name: zammad
+    state: restarted
+
+- name: restart nginx
+  service:
+    name: nginx
+    state: restarted
