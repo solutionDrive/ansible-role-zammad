@@ -1,0 +1,7 @@
+---
+
+- include: setup.yml
+  when: zammad_install
+
+- include: configure.yml
+  when: zammad_configure

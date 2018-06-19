@@ -1,0 +1,18 @@
+---
+- name: Download zammad release
+  get_url:
+    url: https://ftp.zammad.com/zammad-latest.tar.gz
+    dest: /tmp/zammad-latest.tar.gz
+    mode: 0440
+
+- name: Create zammad target directory
+  file:
+    path: /opt/zammad
+    state: directory
+    mode: 0775
+
+- name: Unarchive zammad
+  unarchive:
+    src: /tmp/zammad-latest.tar.gz
+    dest: /opt/zammad
+    remote_src: yes
