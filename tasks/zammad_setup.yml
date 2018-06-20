@@ -26,17 +26,19 @@
     - rake
     - rails
 
+# Attention! Inverted logic: "without postgres" means "install with mysql"
 - name: Install application dependencies with mysql database support
   shell: bundle install --without test development postgres
   args:
     chdir: /opt/zammad
   when: zammad_db_mysql
 
+# Attention! Inverted logic: "without mysql" means "install with postgres"
 - name: Install dependencies with postgres database support
   shell: bundle install --without test development mysql
   args:
     chdir: /opt/zammad/
-  when: zammad_db_mysql
+  when: zammad_db_postgresql
 
 - name: Install zammad systemd services
   shell: install-zammad-systemd-services.sh
