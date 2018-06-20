@@ -20,16 +20,16 @@ Role Variables
     # Install prerequisites via apt (disable and do it manually to use another package manager)
     zammad_install_prerequisites: true
 
-    # If set to true, the setup process is triggered.
+    # Install zammad itself (from source)
     zammad_install: true
 
-    # If set to true, the configuration process is done.
+    # Configure existing zammad installation (setup can be done by setting ```zammad_install``` to true)
     zammad_configure: false
 
     # Install nginx as a reverse proxy in front of zammad
     zammad_install_nginx: true
 
-    # If set to true, nginx is configured as reverse proxy.
+    # Configure existing nginx as reverse proxy for zammad installation
     zammad_configure_nginx: false
 
     # Set to true to create database and run migrations
