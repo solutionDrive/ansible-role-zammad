@@ -17,7 +17,7 @@
     dest: /opt/zammad
     remote_src: yes
 
-- name: Install base dependencies: bundler, rake and rails
+- name: "Install base dependencies: bundler, rake and rails"
   gem:
     name: "{{ item }}"
     state: present
