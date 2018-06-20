@@ -1,6 +1,6 @@
 ---
 - name: Install system prerequisites
-  packages:
+  package:
     name: "{{ item }}"
     state: present
     update_cache: yes
