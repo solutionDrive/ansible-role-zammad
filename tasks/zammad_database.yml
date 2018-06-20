@@ -4,6 +4,9 @@
   shell: "{{ item }}"
   args:
     chdir: /opt/zammad
+  environment:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
   with_items:
     - rake db:create
     - rake db:migrate
