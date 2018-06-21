@@ -17,31 +17,29 @@
     dest: /opt/zammad
     remote_src: yes
 
-- name: "Install base dependencies: bundler, rake and rails"
-  gem:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - bundler
-    - rake
-    - rails
+- name: Give zammad user permissions
+  file:
+    path: /opt/zammad
+    mode: 0755
+    owner: zammad
+    recurse: true
 
 # Attention! Inverted logic: "without postgres" means "install with mysql"
 - name: Install application dependencies with mysql database support
-  shell: bundle install --without test development postgres
+  shell: bundle install --path vendor/bundle --without test development postgres
   args:
     chdir: /opt/zammad
   when: zammad_db_mysql
 
 # Attention! Inverted logic: "without mysql" means "install with postgres"
 - name: Install dependencies with postgres database support
-  shell: bundle install --without test development mysql
+  shell: bundle install --path vendor/bundle --without test development mysql
   args:
     chdir: /opt/zammad/
   when: zammad_db_postgresql
 
 - name: Install zammad systemd services
-  shell: install-zammad-systemd-services.sh
+  shell: ./install-zammad-systemd-services.sh
   args:
-    chdir: /opt/zammad/scripts/systemd
+    chdir: /opt/zammad/script/systemd
   when: zammad_install_systemd_service

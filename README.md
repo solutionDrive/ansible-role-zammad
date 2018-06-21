@@ -13,6 +13,9 @@ https://docs.zammad.org/en/latest/prerequisites-software.html .
 Please note that is highly recommended *not* to run the database server
 on the same machine as zammad itself.
 
+You have to install ruby, bundler, rake and rails before.
+Use for example geerlingguy.ruby but choose to build ruby from source as package manager's package may be outdated.
+
 
 Role Variables
 --------------

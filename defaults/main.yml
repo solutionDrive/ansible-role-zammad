@@ -3,6 +3,8 @@ zammad_install_prerequisites: true
 zammad_install: true
 zammad_install_nginx: true
 zammad_configure: false
+zammad_configure_nginx: true
+zammad_remove_nginx_default_vhost: false
 
 zammad_db_mysql: true
 zammad_db_postgresql: false

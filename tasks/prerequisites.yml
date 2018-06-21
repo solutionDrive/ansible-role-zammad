@@ -28,6 +28,5 @@
     - pkg-config
     - libffi-dev
     - libmysqlclient-dev
-    - mysql-server
     - nginx
     - gawk
