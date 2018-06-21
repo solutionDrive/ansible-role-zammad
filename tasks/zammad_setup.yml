@@ -30,6 +30,7 @@
   args:
     chdir: /opt/zammad
   when: zammad_db_mysql
+  become_user: zammad
 
 # Attention! Inverted logic: "without mysql" means "install with postgres"
 - name: Install dependencies with postgres database support
@@ -37,6 +38,7 @@
   args:
     chdir: /opt/zammad/
   when: zammad_db_postgresql
+  become_user: zammad
 
 - name: Install zammad systemd services
   shell: ./install-zammad-systemd-services.sh
