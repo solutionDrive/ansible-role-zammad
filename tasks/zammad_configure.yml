@@ -4,8 +4,8 @@
   template:
     src: templates/database.yml.j2
     dest: /opt/zammad/config/database.yml
-    owner: zammad
-    group: zammad
+    owner: "{{ zammad_user }}"
+    group: "{{ zammad_group }}"
     mode: 0640
   notify:
      - restart zammad

@@ -34,6 +34,9 @@ Role Variables
 
     # Configure existing nginx as reverse proxy for zammad installation
     zammad_configure_nginx: false
+    
+    # Remove nginx's default vhost to enable only zammad
+    zammad_remove_nginx_default_vhost: false
 
     # Set to true to create database and run migrations
     zammad_initialize_db: false
@@ -49,11 +52,9 @@ it is possible to configure an existing zammad installation
     # Set to true to install with PostgreSQL as database driver
     zammad_db_postgresql: false
 
+
 **Do not set both ```zammad_db_mysql``` and ```zammad_db_postgresql``` to true!**
 
-
-    # Enable or disable installation of systemd services
-    zammad_install_systemd_service: true
 
     # Database parameters should be self explaining    
     zammad_db_host: 127.0.0.1
@@ -61,6 +62,18 @@ it is possible to configure an existing zammad installation
     zammad_db_username: zammad
     zammad_db_password: ~
     zammad_db_name: zammad
+
+    # The username zammad should be installed under
+    zammad_user: zammad
+    
+    # The group zammad should be installed under
+    zammad_group: zammad
+    
+    # Set to true to automatically create user and group if they don't exist yet
+    zammad_user_group_create: true
+
+    # Enable or disable installation of systemd services
+    zammad_install_systemd_service: true
 
 
 

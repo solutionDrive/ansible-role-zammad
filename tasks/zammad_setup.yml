@@ -21,7 +21,8 @@
   file:
     path: /opt/zammad
     mode: 0755
-    owner: zammad
+    owner: "{{ zammad_user }}"
+    group: "{{ zammad_user }}"
     recurse: true
 
 # Attention! Inverted logic: "without postgres" means "install with mysql"
@@ -30,7 +31,7 @@
   args:
     chdir: /opt/zammad
   when: zammad_db_mysql
-  become_user: zammad
+  become_user: "{{ zammad_user }}"
 
 # Attention! Inverted logic: "without mysql" means "install with postgres"
 - name: Install dependencies with postgres database support
@@ -38,7 +39,7 @@
   args:
     chdir: /opt/zammad/
   when: zammad_db_postgresql
-  become_user: zammad
+  become_user: "{{ zammad_user }}"
 
 - name: Install zammad systemd services
   shell: ./install-zammad-systemd-services.sh

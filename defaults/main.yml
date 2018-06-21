@@ -15,6 +15,10 @@ zammad_db_username: zammad
 zammad_db_password: ~
 zammad_db_name: zammad
 
+zammad_user: zammad
+zammad_group: zammad
+zammad_user_group_create: true
+
 zammad_install_systemd_service: true
 
 zammad_initialize_db: false

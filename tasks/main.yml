@@ -3,6 +3,9 @@
 - include: prerequisites.yml
   when: zammad_install_prerequisites
 
+- include: zammad_user.yml
+  when: zammad_user_group_create
+
 - include: nginx_setup.yml
   when: zammad_install_nginx
 
