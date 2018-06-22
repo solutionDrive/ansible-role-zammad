@@ -1,0 +1,28 @@
+galaxy_info:
+  author: solutionDrive
+  description: Install and configure zammad (see https://zammad.org )
+  company: solutionDrive GmbH
+
+  license: MIT
+
+  min_ansible_version: 2.0
+
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+
+  galaxy_tags:
+    - zammad
+    - ticket
+    - support
+    - service
+    - setup
+    - installation
+    - config
+    - configuration
+
+dependencies: []

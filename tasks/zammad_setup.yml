@@ -1,0 +1,56 @@
+---
+- name: Download zammad release
+  get_url:
+    url: https://ftp.zammad.com/zammad-latest.tar.gz
+    dest: /tmp/zammad-latest.tar.gz
+    mode: 0440
+
+- name: Create zammad target directory
+  file:
+    path: /opt/zammad
+    state: directory
+    mode: 0775
+
+- name: Unarchive zammad
+  unarchive:
+    src: /tmp/zammad-latest.tar.gz
+    dest: /opt/zammad
+    remote_src: yes
+
+- name: Give zammad user permissions
+  file:
+    path: /opt/zammad
+    owner: "{{ zammad_user }}"
+    group: "{{ zammad_user }}"
+    recurse: true
+
+# Attention! Inverted logic: "without postgres" means "install with mysql"
+- name: Install application dependencies with mysql database support
+  shell: bundle install --path vendor/bundle --without test development postgres
+  args:
+    chdir: /opt/zammad
+  when: zammad_db_mysql
+  become_user: "{{ zammad_user }}"
+
+# Attention! Inverted logic: "without mysql" means "install with postgres"
+- name: Install dependencies with postgres database support
+  shell: bundle install --path vendor/bundle --without test development mysql
+  args:
+    chdir: /opt/zammad/
+  when: zammad_db_postgresql
+  become_user: "{{ zammad_user }}"
+
+- name: Install zammad systemd services
+  shell: ./install-zammad-systemd-services.sh
+  args:
+    chdir: /opt/zammad/script/systemd
+  when: zammad_install_systemd_service
+
+- name: Precompile assets
+  shell: "bundle exec rake assets:precompile"
+  args:
+    chdir: /opt/zammad
+  environment:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
+  become_user: "{{ zammad_user }}"

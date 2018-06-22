@@ -1,0 +1,5 @@
+---
+- name: Install nginx http server used as reverse proxy
+  package:
+    name: nginx
+    state: present

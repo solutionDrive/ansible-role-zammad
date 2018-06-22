@@ -1,0 +1,27 @@
+---
+- name: Create database (if configured)
+  shell: "bundle exec rake db:create"
+  args:
+    chdir: /opt/zammad
+  environment:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
+  when: zammad_db_create
+
+- name: Execute database migrations (if configured)
+  shell: "bundle exec rake db:migrate"
+  args:
+    chdir: /opt/zammad
+  environment:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
+  when: zammad_db_migrate
+
+- name: Seed database (if configured)
+  shell: "bundle exec rake db:seed"
+  args:
+    chdir: /opt/zammad
+  environment:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
+  when: zammad_db_seed

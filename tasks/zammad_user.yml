@@ -1,0 +1,13 @@
+---
+- name: Ensure zammad group exists
+  group:
+    name: "{{ zammad_group }}"
+    state: present
+
+- name: Add zammad user
+  user:
+    name: "{{ zammad_user }}"
+    group: "{{ zammad_group }}"
+    uid: 1040
+    shell: /bin/bash
+    state: present
