@@ -38,13 +38,14 @@ Role Variables
     # Remove nginx's default vhost to enable only zammad
     zammad_remove_nginx_default_vhost: false
 
-    # Set to true to create database and run migrations
-    zammad_initialize_db: false
-
-If you set ```zammad_install``` to false and ```zammad_configure``` to true
-it is possible to configure an existing zammad installation
-(for example inside a launch configuration).
-
+    # Set to true to create the database
+    zammad_db_create: false
+    
+    # Set to true to run database migrations (you MUST do this is  zammad_db_create  is set to true)
+    zammad_db_migrate: false
+    
+    # Set to true to seed the database with initial values (DON'T DO THIS ON AN EXISTING DATABASE!)
+    zammad_db_seed: false
 
     # Set to true to install with MySQL as database driver
     zammad_db_mysql: true

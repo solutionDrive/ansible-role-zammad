@@ -20,7 +20,6 @@
 - name: Give zammad user permissions
   file:
     path: /opt/zammad
-    mode: 0755
     owner: "{{ zammad_user }}"
     group: "{{ zammad_user }}"
     recurse: true
@@ -46,3 +45,12 @@
   args:
     chdir: /opt/zammad/script/systemd
   when: zammad_install_systemd_service
+
+- name: Precompile assets
+  shell: "bundle exec rake assets:precompile"
+  args:
+    chdir: /opt/zammad
+  environment:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
+  become_user: "{{ zammad_user }}"
