@@ -26,6 +26,8 @@
   file:
     path: /etc/nginx/sites-enabled/default
     state: absent
+  notify:
+    - restart nginx
   when: zammad_remove_nginx_default_vhost
 
 
@@ -33,5 +35,6 @@
   file:
     path: /etc/nginx/sites-enabled/default.conf
     state: absent
+  notify:
+    - restart nginx
   when: zammad_remove_nginx_default_vhost
-
