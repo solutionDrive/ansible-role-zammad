@@ -78,6 +78,57 @@ Role Variables
 
 
 
+Cloud Usage Suggestion
+----------------------
+
+If you want to provision for example an AMI that just runs zammad, you should setup but not configure it:
+
+    zammad_install_prerequisites: true
+    zammad_install: true
+    zammad_configure: false
+    zammad_install_nginx: true
+    zammad_configure_nginx: false
+    zammad_remove_nginx_default_vhost: false
+    zammad_db_create: false
+    zammad_db_migrate: false
+    zammad_db_seed: false
+    zammad_db_mysql: true or false
+    zammad_db_postgresql: false or true
+    zammad_user: zammad
+    zammad_group: zammad
+    zammad_user_group_create: true
+    zammad_install_systemd_service: true
+
+
+In your launch configuration you should then configure it:
+
+    zammad_install_prerequisites: false
+    zammad_install: false
+    zammad_configure: true
+    zammad_install_nginx: false
+    zammad_configure_nginx: true
+    zammad_remove_nginx_default_vhost: true
+    zammad_db_create: false
+    zammad_db_migrate: true
+    zammad_db_seed: false
+    zammad_db_host: 127.0.0.1
+    zammad_db_port: 3306
+    zammad_db_username: zammad
+    zammad_db_password: ~
+    zammad_db_name: zammad
+    zammad_user: zammad
+    zammad_group: zammad
+    zammad_user_group_create: false
+    zammad_install_systemd_service: false
+
+
+A special case is the very first run, if you do not have a database yet.
+You have to options:
+Either create the database manually and just run ansible once with ```zammad_db_seed``` set to true,
+or run ansible once with ```zammad_db_create``` set to true and ```zammad_db_seed``` set to true.
+(But then you need to provide a user that is allowed to create a database!)
+
+
 Dependencies
 ------------
 
