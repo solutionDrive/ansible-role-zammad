@@ -76,6 +76,9 @@ Role Variables
     # Enable or disable installation of systemd services
     zammad_install_systemd_service: true
 
+    # Set to true to precompile static assets (database must be set up and working before)
+    zammad_precompile_assets: false
+
 
 
 Cloud Usage Suggestion
@@ -98,6 +101,7 @@ If you want to provision for example an AMI that just runs zammad, you should se
     zammad_group: zammad
     zammad_user_group_create: true
     zammad_install_systemd_service: true
+    zammad_precompile_assets: false
 
 
 In your launch configuration you should then configure it:
@@ -120,6 +124,7 @@ In your launch configuration you should then configure it:
     zammad_group: zammad
     zammad_user_group_create: false
     zammad_install_systemd_service: false
+    zammad_precompile_assets: true
 
 
 A special case is the very first run, if you do not have a database yet.

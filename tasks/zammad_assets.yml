@@ -1,0 +1,9 @@
+---
+- name: Precompile assets
+  shell: "bundle exec rake assets:precompile"
+  args:
+    chdir: /opt/zammad
+  environment:
+    RAILS_ENV: production
+    RAILS_SERVE_STATIC_FILES: true
+  become_user: "{{ zammad_user }}"
