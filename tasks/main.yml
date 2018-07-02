@@ -16,5 +16,8 @@
 
 - include: zammad_database.yml
 
+- include: zammad_assets.yml
+  when: zammad_precompile_assets
+
 - include: nginx_configure.yml
   when: zammad_configure_nginx

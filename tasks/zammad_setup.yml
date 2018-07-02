@@ -30,7 +30,6 @@
   args:
     chdir: /opt/zammad
   when: zammad_db_mysql
-  become_user: "{{ zammad_user }}"
 
 # Attention! Inverted logic: "without mysql" means "install with postgres"
 - name: Install dependencies with postgres database support
@@ -38,19 +37,16 @@
   args:
     chdir: /opt/zammad/
   when: zammad_db_postgresql
-  become_user: "{{ zammad_user }}"
+
+- name: After gem installation ensure that vendor directory belongs to zammad user
+  file:
+    path: /opt/zammad/vendor
+    owner: "{{ zammad_user }}"
+    group: "{{ zammad_user }}"
+    recurse: true
 
 - name: Install zammad systemd services
   shell: ./install-zammad-systemd-services.sh
   args:
     chdir: /opt/zammad/script/systemd
   when: zammad_install_systemd_service
-
-- name: Precompile assets
-  shell: "bundle exec rake assets:precompile"
-  args:
-    chdir: /opt/zammad
-  environment:
-    RAILS_ENV: production
-    RAILS_SERVE_STATIC_FILES: true
-  become_user: "{{ zammad_user }}"
