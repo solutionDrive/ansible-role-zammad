@@ -25,4 +25,3 @@ zammad_db_create: false
 zammad_db_migrate: false
 zammad_db_seed: false
 zammad_precompile_assets: false
-
