@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: zammad
   author: solutionDrive
   description: Install and configure zammad (see https://zammad.org )
   company: solutionDrive GmbH
