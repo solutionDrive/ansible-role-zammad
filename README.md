@@ -1,7 +1,7 @@
 ansible-role-zammad
 ===================
 
-This role installs and/or configures Zammad, known from https://zamma.org .
+This role installs and/or configures Zammad, known from https://zammad.org .
 
 
 Requirements
