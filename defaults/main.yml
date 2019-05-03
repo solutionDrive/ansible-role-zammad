@@ -53,3 +53,5 @@ zammad_system_prerequisites_packages:
   - libmysqlclient-dev
   - nginx
   - gawk
+  - libimlib2
+  - libimlib2-dev
