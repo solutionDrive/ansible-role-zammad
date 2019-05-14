@@ -3,7 +3,12 @@ default: &default
   timeout: 5000
   encoding: utf8
 
+  {% if zammad_db_mysql %}
   adapter: mysql2
+  {% endif %}
+  {% if zammad_db_postgresql %}
+  adapter: postgresql
+  {% endif %}
   host: {{ zammad_db_host }}
   port: {{ zammad_db_port }}
   username: {{ zammad_db_username }}
