@@ -55,3 +55,4 @@ zammad_system_prerequisites_packages:
   - gawk
   - libimlib2
   - libimlib2-dev
+  - libpq-dev
