@@ -1,4 +1,14 @@
 ---
+- name: Add libpq-dev to system prerequisites
+  set_fact:
+    zammad_system_prerequisites_packages: "{{ zammad_system_prerequisites_packages | default([]) + [ 'libpq-dev' ] }}"
+  when: zammad_db_postgresql
+
+- name: Add libmysqlclient-dev to system prerequisites
+  set_fact:
+    zammad_system_prerequisites_packages: "{{ zammad_system_prerequisites_packages | default([]) + [ 'libmysqlclient-dev' ] }}"
+  when: zammad_db_mysql
+
 - name: Install system prerequisites
   package:
     name: "{{ item }}"

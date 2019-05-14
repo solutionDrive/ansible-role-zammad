@@ -50,9 +50,7 @@ zammad_system_prerequisites_packages:
   - libncurses5-dev
   - pkg-config
   - libffi-dev
-  - libmysqlclient-dev
   - nginx
   - gawk
   - libimlib2
   - libimlib2-dev
-  - libpq-dev
