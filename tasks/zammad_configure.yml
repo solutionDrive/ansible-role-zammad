@@ -6,5 +6,7 @@
     owner: "{{ zammad_user }}"
     group: "{{ zammad_group }}"
     mode: 0640
+    lstrip_blocks: true
+    trim_blocks: true
   notify:
      - restart zammad
