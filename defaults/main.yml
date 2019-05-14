@@ -50,7 +50,6 @@ zammad_system_prerequisites_packages:
   - libncurses5-dev
   - pkg-config
   - libffi-dev
-  - nginx
   - gawk
   - libimlib2
   - libimlib2-dev

@@ -9,6 +9,11 @@
     zammad_system_prerequisites_packages: "{{ zammad_system_prerequisites_packages | default([]) + [ 'libmysqlclient-dev' ] }}"
   when: zammad_db_mysql
 
+- name: Add nginx to system prerequisites
+  set_fact:
+    zammad_system_prerequisites_packages: "{{ zammad_system_prerequisites_packages | default([]) + [ 'nginx' ] }}"
+  when: zammad_install_nginx
+
 - name: Install system prerequisites
   package:
     name: "{{ item }}"
